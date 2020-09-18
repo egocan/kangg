@@ -1,0 +1,29 @@
+#navList a {
+    text-shadow: 0px 0px 0px #000 !important;
+}
+#navList a:hover {
+    text-shadow: 3px 3px 3px #000 !important;
+}
+
+#navList li ul{
+    position: absolute;
+}
+
+#navList li ul li{
+    background-color: #fff;
+    z-index: 9999;
+    display: none;
+    float: none;
+}
+#navList li ul li a{
+    color: #0C0C0C !important;
+}
+
+#navList li:hover ul li{
+    display: block;
+}
+
+.firstMenu{
+    background-color: #fff;
+    color: #0C0C0C;
+}

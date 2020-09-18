@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+ <head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <title>{{$.index}} - {{$.title}}</title>
+  <meta name="description" content="{{$.Data.Remark}}"/>
+  <meta name="keywords" content="{{$.Data.Tag}}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon" />
+  <!-- All CSS -->
+  <link rel="stylesheet" href="/static/assets/css/animate.css" />
+  <link rel="stylesheet" href="/static/assets/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/static/assets/css/slick.css" />
+  <link rel="stylesheet" href="/static/assets/css/meanmenu.css" />
+  <link rel="stylesheet" href="/static/assets/css/main.css" />
+ </head>
+ <body>
+   <!-- preloader -->
+   <div id="preloader">
+    <div class="preloader">
+     <span></span>
+     <span></span>
+    </div>
+   </div>
+   <!-- preloader end -->
+   <!-- header start -->
+   <header class="header-area header-default">
+   {{template "home/kangg/header.html" .}}
+ </header>
+  <!-- header end -->
+  <!-- start search area -->
+  <div class="search-area">
+    {{template "home/kangg/searchbar.html" .}}
+  </div>
+  <!-- start search area -->
+  <!-- start side bar -->
+  <aside class="sidebar-group">
+   {{template "home/kangg/aside.html" .}}
+  </aside>
+  <!-- end side bar -->
+  <!-- main start -->
+  <main>
+   <!-- breadcrumb start -->
+   <section class="breadcrumb-area pt-100 pb-100" data-opacity="2" data-overlay="dark" style="background-image: url(/static/assets/img/breadcrumb-bg-1.jpg)">
+    <div class="container">
+     <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+       <div class="breadcrumb-content">
+        <h3 class="title">Post Layouts Standard</h3>
+        <ul>
+         <li><a href="/">Home</a></li>
+         <li class="active">文章详情</li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- breadcrumb end -->
+   <!-- contact start -->
+   <div class="blog-details-area pt-80 pb-80">
+    <div class="container">
+     <div class="row">
+      <div class="col-xl-8 col-lg-8">
+       <div class="single-post-item">
+
+        <div class="single-post-details">
+         <div class="single-post-cat">
+          <a href="/list.html?cate={{$.Data.Category.Ename}}">{{$.Data.Category.Name}}</a>
+         </div>
+         <div class="single-post-title">
+          <h3>{{$.Data.Title}}</h3>
+         </div>
+         <div class="single-post-meta-wrapper">
+          <div class="single-post-meta">
+           <ul>
+            <li>
+              <!-- <img alt="author" src="assets/img/author/author-1.png" /> -->
+              <i class="far fa-user"></i>
+              <a href="#">{{$.Data.User.Name}}</a></li>
+            <li><i class="far fa-calendar-alt"></i>{{dateformat $.Data.Created "2006-01-02 15:04:05"}}</li>
+           </ul>
+          </div>
+          <div class="single-post-share">
+           <span class="single-post-share-icon"><i class="far fa-share-alt"></i></span>
+           <div class="single-post-icons">
+            <a href="#"><i class="fab fa-weixin"></i></a>
+            <a href="#"><i class="fab fa-qq"></i></a>
+            <a href="#"><i class="fab fa-weibo"></i></a>
+            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+           </div>
+          </div>
+         </div>
+         <div class="single-post-content">
+          {{str2html $.Data.Html}}
+         </div>
+         <div class="single-post-meta-wrapper">
+          <div class="single-post-meta">
+           <ul>
+            <li>
+              <!-- <img alt="author" src="assets/img/author/author-1.png" /> -->
+              <i class="far fa-book"> 浏览：</i>
+              <a href="#">{{$.Data.Pv}}</a></li>
+            <li><i class="far fa-comment"> 评论：</i>{{$.Data.Review}}</li>
+           </ul>
+          </div>
+         </div>
+        </div>
+       </div>
+
+       <!-- <div class="col-lg-12"><button class="btn btn-theme mt-30" type="submit">赞一个 </button></div> -->
+
+       <div class="widget mb-60">
+         <h4 class="widget-title">
+           <div class="like">
+           <button class="btn btn-theme mt-30" type="button">赞一个<i>({{$.Data.Like}})</i></button>
+         </div>
+         </h4>
+       </div>
+       <!-- start about author -->
+       <!-- <div class="author-box mt-60">
+        <div class="author-box-thumb">
+         <img src="assets/img/author/author-thumb.png" alt="author" />
+        </div>
+        <div class="author-box-content">
+         <h4 class="author-box-name"><a href="#">Terrance J. Rivera </a></h4>
+         <span class="author-box-desc">Author Biver </span>
+         <p>At vero eos accusamuset iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corre quos dolores et quas molestias excepturi sinte </p>
+         <div class="author-box-social">
+          <ul>
+           <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+           <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+           <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+           <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+          </ul>
+         </div>
+        </div>
+       </div> -->
+       <!-- end about author -->
+       <div class="posts-navigation pt-60 pb-60">
+        <div class="row justify-content-between">
+          {{str2html $.ArticleAD}}
+          <!-- <a href="#"><img src="/static/assets/img/ad3.png" alt="post-img" /></a> -->
+        </div>
+       </div>
+       {{template "home/kangg/review.html" .}}
+      </div>
+      <!-- start right -->
+      <div class="col-xl-4 col-lg-4 sidebar-wrapper">
+      {{template "home/kangg/right.html" .}}
+      </div>
+      <!-- end tirht -->
+     </div>
+    </div>
+   </div>
+   <!-- contact end -->
+  </main>
+  <!-- main end -->
+  <!-- instagram start -->
+  <!-- <div class="instagram-area position-relative mb--60">
+   <div class="container">
+    <div class="row">
+     <div class="col-xl-12">
+      <ul class="instagram-wrapper instagram-col-7">
+       <li><a href="#"><img alt="instagram-1" src="assets/img/widget/instagram-1.jpg" /></a></li>
+       <li><a href="#"><img alt="instagram-2" src="assets/img/widget/instagram-2.jpg" /></a></li>
+       <li><a href="#"><img alt="instagram-3" src="assets/img/widget/instagram-3.jpg" /></a></li>
+       <li><a href="#"><img alt="instagram-4" src="assets/img/widget/instagram-4.jpg" /></a></li>
+       <li><a href="#"><img alt="instagram-5" src="assets/img/widget/instagram-5.jpg" /></a></li>
+       <li><a href="#"><img alt="instagram-6" src="assets/img/widget/instagram-6.jpg" /></a></li>
+       <li><a href="#"><img alt="instagram-7" src="assets/img/widget/instagram-7.jpg" /></a></li>
+      </ul>
+     </div>
+    </div>
+   </div>
+  </div> -->
+  <!-- instagram end -->
+  <!-- footer start -->
+  <footer class="footer-area">
+   {{template "home/kangg/footer.html" .}}
+  </footer>
+  <!-- footer end -->
+  <!-- Optional JavaScript -->
+  <!-- jQuery first,then Popper.js,then Bootstrap JS -->
+  <script src="/static/assets/js/jquery-3.4.1.min.js"></script>
+  <script src="/static/assets/js/popper.min.js"></script>
+  <script src="/static/assets/js/bootstrap.min.js"></script>
+  <script src="/static/assets/js/slick.min.js"></script>
+  <script src="/static/assets/js/jquery.meanmenu.min.js"></script>
+  <!-- <script src="http://www.google.cn/maps/api/js?key=AIzaSyCIJ_QKHN-bi6_1C9f5eYE3pZs1zhQIo5o"></script> -->
+  <script src="/static/assets/js/jquery.nice-select.min.js"></script>
+  <script src="/static/assets/js/script.js"></script>
+  <script>
+    $(function () {
+        $.ajax({
+            url:'/pv/{{$.Data.Id}}.html',
+            type:'get',
+            success:function (data) {
+                //console.log(data);
+            }
+        });
+
+        $(".like button").click(function () {
+            $.ajax({
+                url:'/article/like',
+                type:'post',
+                data:{"id":{{$.Data.Id}}},
+                success:function (data) {
+                    if(data.code == 200) {
+                        $(".like i").html("(" + data.like + ")")
+                    }
+                }
+            });
+        })
+    })
+
+</script>
+ </body>
+</html>

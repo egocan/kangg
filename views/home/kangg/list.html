@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+ <head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <title>{{$.index}} 第 {{.Paginator.CurrentPage}} 页 - {{$.title}}</title>
+  <meta name="description" content="{{$.description}}"/>
+  <meta name="keywords" content="{{$.keyword}}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon" />
+  <!-- All CSS -->
+  <!-- <link href="http://cdn.bootcss.com/slick-carousel/1.8.0/slick.min.css" rel="stylesheet"> -->
+
+  <link rel="stylesheet" href="/static/assets/css/animate.css" />
+  <link rel="stylesheet" href="/static/assets/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/static/assets/css/slick.css" />
+  <link rel="stylesheet" href="/static/assets/css/meanmenu.css" />
+  <link rel="stylesheet" href="/static/assets/css/main.css" />
+ </head>
+ <body>
+   <!-- preloader -->
+   <div id="preloader">
+    <div class="preloader">
+     <span></span>
+     <span></span>
+    </div>
+   </div>
+   <!-- preloader end -->
+   <!-- header start -->
+   <header class="header-area header-default">
+   {{template "home/kangg/header.html" .}}
+ </header>
+ <!-- header end -->
+ <!-- start search area -->
+ <div class="search-area">
+   {{template "home/kangg/searchbar.html" .}}
+ </div>
+ <!-- start search area -->
+ <!-- start side bar -->
+ <aside class="sidebar-group">
+  {{template "home/kangg/aside.html" .}}
+ </aside>
+  <!-- end side bar -->
+  <!-- main start -->
+  <main>
+   <!-- slider start -->
+   <div class="slider-area main-home-slider">
+     {{range $k ,$v := $.Banner}}
+    <div class="home-slider d-flex align-items-end" style="background-image: url({{$v.Image}})">
+     <div class="container">
+      <div class="row">
+       <div class="col-xl-12">
+        <div class="home-slide-content text-center pb-100">
+         <span class="sub-title" data-animation="fadeInDown" data-delay="0.3s"><a href="/list.html?cate={{$v.Article.Category.Ename}}">{{$v.Article.Category.Name}}</a></span>
+         <h2 class="title" data-animation="fadeInUp" data-delay="0.6s"><a href="/detail/{{$v.Article.Id}}.html">{{$v.Article.Title}}</a></h2>
+         <span class="date" data-animation="fadeInUp" data-delay="1.3s">{{dateformat $v.Article.Created "2006-01-02"}}</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    {{end}}
+    <!-- <div class="home-slider d-flex align-items-end" style="background-image: url(/static/assets/img/slider-3.jpg)">
+     <div class="container">
+      <div class="row">
+       <div class="col-xl-12">
+        <div class="home-slide-content text-center pb-100">
+         <span class="sub-title" data-animation="fadeInDown" data-delay="0.3s"><a href="post-standard.html">travel</a></span>
+         <h2 class="title" data-animation="fadeInUp" data-delay="0.6s"><a href="post-standard.html">Russia-Backed Syrian Assault On World</a></h2>
+         <span class="date" data-animation="fadeInUp" data-delay="1.3s">20 March 2020</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> -->
+   </div>
+   <!-- slider start -->
+   <!-- services start -->
+   <div class="service-area pt-40 pb-30">
+    <div class="container">
+     <div class="row">
+    {{range $key ,$vlaue := $.Data}}
+    {{if eq $vlaue.Recommend 1}}
+      <div class="col-xl-4 col-lg-4 col-md-6">
+       <div class="service-wrap mb-30">
+        <div class="service-thumb">
+         <img src="{{$vlaue.Cover}}" alt="service-1" />
+         <span class="service-num">{{IndexForOne $key 1 1}}</span>
+        </div>
+        <div class="service-details">
+         <h3><a href="/list.html?cate={{$vlaue.Category.Ename}}">{{$vlaue.Category.Name}}</a></h3>
+         <p>{{$vlaue.Title}}</p>
+        </div>
+       </div>
+      </div>
+      {{end}}
+      {{end}}
+     </div>
+    </div>
+   </div>
+   <!-- services end -->
+   <!-- blog start -->
+   <div class="blog-area">
+    <div class="container">
+     <div class="row">
+      <div class="col-xl-8 col-lg-8">
+       <!-- <div class="featured-post mb-60">
+        <div class="featured-thumb">
+         <img src="assets/img/blog/featured-1.jpg" alt="featured" />
+         <span class="featured-text">biver</span>
+        </div>
+        <div class="featured-details">
+         <div class="featured-cat">
+          <a href="#">travel</a>
+         </div>
+         <div class="featured-title">
+          <h3><a href="post-standard.html">First Iranian-American Astronaut Reaches Many Stars Migrants and Personal </a></h3>
+         </div>
+         <div class="featured-meta">
+          <div class="featured-date">
+           <span>20 March 2020 </span>
+          </div>
+          <div class="featured-share">
+           <span class="share-icon"><i class="far fa-share-alt"></i></span>
+           <a href="#"><i class="fab fa-facebook-f"></i></a>
+           <a href="#"><i class="fab fa-twitter"></i></a>
+           <a href="#"><i class="fab fa-instagram"></i></a>
+           <a href="#"><i class="fab fa-google-plus-g"></i></a>
+          </div>
+         </div>
+        </div>
+       </div> -->
+       <div class="mb-60">
+         {{str2html $.HomeAD}}
+        <!-- <a href="#"><img src="http://v.bootstrapmb.com/2020/5/p1aob7879/assets/img/bg/ads.jpg" alt="ads"></a> -->
+       </div>
+       <div class="row">
+         {{range $key ,$vlaue := $.Data}}
+         {{if eq "ebook" $vlaue.Category.Ename}}
+         <div class="food-blog-wrap mb-60">
+          <div class="food-blog-thumb">
+           <a href="/detail/{{$vlaue.Id}}.html"><img src="{{$vlaue.Cover}}" alt="{{$vlaue.Title}}" /></a>
+          </div>
+          <div class="food-blog-details">
+           <div class="food-blog-cat">
+            <a href="/list.html?cate={{$vlaue.Category.Ename}}">{{$vlaue.Category.Name}} &amp; {{$vlaue.Tag}}</a>
+           </div>
+           <div class="food-blog-title">
+            <h3><a href="/detail/{{$vlaue.Id}}.html">{{$vlaue.Title}} </a></h3>
+           </div>
+           <div class="food-blog-content">
+            <p>摘要：{{$vlaue.Remark}}</p>
+           </div>
+           <div class="food-blog-date">
+            <span>{{dateformat $vlaue.Created "2006-01-02"}}</span>
+           </div>
+           <div class="food-blog-share">
+             阅读 ({{$vlaue.Pv}}) 评论 ({{$vlaue.Review}}) 点赞 ({{$vlaue.Like}})
+             <span style="margin-left: 5px">标签：</span><a href="/list.html?tag={{$vlaue.Tag}}">{{$vlaue.Tag}}</a>
+            </div>
+          </div>
+         </div>
+         {{else}}
+        <div class="col-xl-6 col-md-6">
+         <div class="b-blog-post mb-60">
+          <div class="b-blog-thumb">
+           <img src="{{$vlaue.Cover}}" alt="{{$vlaue.Title}}" />
+           <span class="blog-num">{{IndexForOne $key 1 1}}</span>
+          </div>
+          <div class="b-blog-details">
+           <div class="blog-cat">
+            <a href="/list.html?cate={{$vlaue.Category.Ename}}">{{$vlaue.Category.Name}}</a>
+           </div>
+           <div class="blog-title">
+            <h4><a href="/detail/{{$vlaue.Id}}.html">{{$vlaue.Title}}</a></h4>
+           </div>
+           <div class="blog-meta">
+            <div class="blog-date">
+             <span>{{$vlaue.Created}}</span>
+            </div>
+            <div class="blog-share">
+              阅读 ({{$vlaue.Pv}}) 评论 ({{$vlaue.Review}}) 点赞 ({{$vlaue.Like}})
+              <span style="margin-left: 5px">标签：</span><a href="/list.html?tag={{$vlaue.Tag}}">{{$vlaue.Tag}}</a>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+         {{end}}
+         {{end}}
+       </div>
+       <div class="basic-pagination mb-60">
+        <ul>
+          {{if gt .Paginator.CurrentPage 1}}
+         <li><a class="prev page-numbers" href="{{urlfor "home.ArticleController.List"}}?page={{IndexDecrOne $.Paginator.CurrentPage}}{{if $.Date}}&date={{$.Date}}{{end}}{{if $.CategoryID}}&c={{$.CategoryID}}{{end}}"><i class="fas fa-chevron-left"></i></a></li>
+         {{end}}
+         {{if gt .Paginator.TotalPage 0}}
+         <!-- <li><a class="page-numbers" href="">1</a></li> -->
+         {{range $key, $vlaue := .Paginator.PageRange}}
+         <!-- <li><a class="page-numbers" href="{{urlfor "home.ArticleController.List"}}?page={{$vlaue}}">{{$vlaue}}</a></li> -->
+         <li>{{if eq $.Paginator.CurrentPage $vlaue}}<span class="page-numbers current">{{$vlaue}}</span>{{else}}
+           <a class="page-numbers" href="{{urlfor "home.ArticleController.List"}}?page={{$vlaue}}">{{$vlaue}}</a>{{end}}</li>
+
+         {{end}}
+         {{end}}
+         {{if lt .Paginator.CurrentPage .Paginator.TotalPage}}
+         <li><a class="next page-numbers" href="{{urlfor "home.ArticleController.List"}}?page={{IndexAddOne $.Paginator.CurrentPage}}{{if $.Date}}&date={{$.Date}}{{end}}{{if $.CategoryID}}&c={{$.CategoryID}}{{end}}">Next <i class="far fa-angle-right"></i></a></li>
+         {{end}}
+        </ul>
+       </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 sidebar-wrapper">
+      {{template "home/kangg/right.html" .}}
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- blog end -->
+  </main>
+  <!-- main end -->
+  <!-- footer start -->
+  <footer class="footer-area">
+   {{template "home/kangg/footer.html" .}}
+  </footer>
+  <!-- footer end -->
+  <!-- Optional JavaScript -->
+  <!-- jQuery first,then Popper.js,then Bootstrap JS -->
+
+  <script src="/static/assets/js/jquery-3.4.1.min.js"></script>
+  <script src="/static/assets/js/popper.min.js"></script>
+  <script src="/static/assets/js/bootstrap.min.js"></script>
+  <!-- <script src="http://cdn.bootcss.com/slick-carousel/1.8.0/slick.min.js"></script> -->
+  <script src="/static/assets/js/slick.min.js"></script>
+  <script src="/static/assets/js/jquery.meanmenu.min.js"></script>
+  <!-- <script src="http://www.google.cn/maps/api/js?key=AIzaSyCIJ_QKHN-bi6_1C9f5eYE3pZs1zhQIo5o"></script> -->
+  <script src="/static/assets/js/jquery.nice-select.min.js"></script>
+  <script src="/static/assets/js/script.js"></script>
+  <!-- <script type="text/javascript">
+  $(document).ready(function(){
+    $('.slider-area').slick({
+      dots: true,
+      adaptiveHeight: true
+    });
+  });
+</script> -->
+ </body>
+</html>

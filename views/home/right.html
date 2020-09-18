@@ -1,0 +1,90 @@
+<div id="sideBarMain">
+    <div>
+        <iframe src="https://ghbtns.com/github-btn.html?user=1920853199&repo=go-blog&type=star&size=large&count=true" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+        <iframe src="https://ghbtns.com/github-btn.html?user=1920853199&repo=go-blog&type=fork&size=large&count=true" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+    </div>
+    <div id="sidebar_news" class="newsItem"><!--done-->
+        <h3 class="catListTitle diyBg">站点公告</h3>
+        <div id="blog-news">
+            <div id="profile_block">
+                {{$.notice}}
+            </div>
+        </div>
+
+    </div>
+
+    <div id="sidebar_news" class="newsItem"><!--done-->
+        <h3 class="catListTitle diyBg">关于我</h3>
+        <div id="blog-news">
+            <div id="profile_block">
+                姓名：
+                <a title="{{$.name}}" href="javascript:;">
+                    {{$.name}}
+                </a>
+                <br>
+                简介：
+                <a href="javascript:;" title="{{$.remark}}">
+                    {{$.remark}}
+                </a>
+                <br>
+                <div style="text-align: center;margin-top: 20px">
+                    <a href="javascript:;">
+                        <img width="80%" src="{{$.image}}">
+                    </a>
+                </div>
+                <br>
+                <div id="p_b_follow"></div>
+            </div>
+        </div>
+
+    </div>
+    <div id="sidebar_categories">
+
+        <div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+            <h3 class="catListTitle diyBg">随笔档案({{$.DateCount}})</h3>
+            <ul>
+                {{range $k,$v := $.DateTimeKey}}
+                    <li>
+                        <a title="{{StringReplace $v "-" "年"}}月" href="/list.html?date={{$v}}" rel="">
+                            {{StringReplace $v "-" "年"}}月({{index $.DateTime $v}})
+                        </a>
+                    </li>
+                {{end}}
+            </ul>
+
+
+        </div>
+
+    </div>
+    <div id="sidebar_topviewedposts" class="sidebar-block">
+        <div class="catListView">
+            <h3 class="catListTitle diyBg">阅读排行榜</h3>
+            <div id="TopViewPostsBlock">
+                <ul style="word-break:break-all">
+                    {{range $k,$v := $.ArticlesReadSort}}
+                        <li>
+                            <a title="{{$v.Title}}" href="/detail/{{$v.Id}}.html">
+                                {{IndexForOne $k 1 1}}. {{$v.Title}}({{$v.Pv}})
+                            </a>
+                        </li>
+                    {{end}}
+                </ul>
+            </div>
+        </div>
+    </div><div id="sidebar_review" class="sidebar-block">
+        <div class="catListView">
+            <h3 class="catListTitle diyBg">最新评论({{$.ReviewCount}})</h3>
+            <div id="TopViewPostsBlock">
+                <ul style="word-break:break-all">
+                    {{range $k,$v := $.Review}}
+                        <li>
+                            <a title="{{$v.Review}}" href="/detail/{{$v.ArticleId}}.html">
+                                {{$v.Review}}
+                            </a>
+                        </li>
+                    {{end}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

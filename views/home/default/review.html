@@ -1,0 +1,184 @@
+<div class="forFlow">
+                <div id="post_detail">
+                    <!--done-->
+
+                    <div id="blog-comments-placeholder">
+                        <div id="comment_pager_top"></div>
+                        <br>
+                        <div class="feedback_area_title">评论</div>
+                        <div class="feedbackNoItems">
+                            <div class="feedbackNoItems">
+                            </div>
+                        </div>
+                        <div id="beforeReview"></div>
+
+                        <div id="comment_pager_bottom">
+
+                        </div>
+                    </div>
+
+
+
+                    <div id="topics" style="margin-top: 20px">
+                        <div class="post">
+                            <form id="form">
+                                <input type="hidden" name="aid" id="aid" value="{{$.Data.Id}}">
+                                <div id="" class="div_my_zzk" style="text-align: center">
+                                    <input placeholder="Go Blog" style="width: 90%" type="text" id="name" name="name"  class="input_my_zzk">
+                                </div>
+                                <div id="" class="div_my_zzk" style="text-align: center">
+                                    <input placeholder="http://go-blog.cn" style="width: 90%" type="text" id="site" name="site"  class="input_my_zzk">
+                                </div>
+                                <div id="" class="div_my_zzk" style="text-align: center">
+                                    <textarea placeholder="..." style="width: 90%;height: 200px" id="review" name="review" class="input_my_zzk"></textarea>
+                                </div>
+                                <div id="" class="div_my_zzk" style="width: 91%;text-align: right;padding-left: 4px">
+                                    <input type="button" value="提交" id="btnZzk" class="btn_my_zzk">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div><!--end: forFlow -->
+
+<script src="/static/js/jquery-2.2.0.min.js"></script>
+<script>
+    $(function () {
+        $("#btnZzk").click(function () {
+            $.ajax({
+                url:'/article/review',
+                type:'post',
+                data:$("#form").serialize(),
+                success:function (data) {
+                    if (data.code == 200) {
+                        window.location.reload()
+                    }
+                    console.log(data);
+                }
+            });
+        });
+
+
+        page(1)
+       /* $.ajax({
+            url:'/article/review/{{$.Data.Id}}.html',
+            type:'get',
+            success:function (data) {
+
+                if (data.code == 200) {
+                    var list = data.Data;
+                    var Paginator = data.Paginator;
+                    var str = "";
+
+                    $.each(list,function (k,v) {
+
+                        str += '<div class="feedbackItem">' +
+                            '<div class="feedbackListSubtitle">' +
+                            '<div class="feedbackManage">' +
+                            '<span class="comment_actions"></span></div>'+
+                            '<a href="#'+v.Id+'" class="layer"># '+ (k + 1 + parseInt(Paginator.currentPage-1) * parseInt(Paginator.pageSize)) +'楼</a>\n' +
+                            '<a name="'+v.Id+'" id="comment_anchor_'+v.Id+'"></a>\n' +
+                            '<span id="comment-maxId" style="display:none">'+v.Id+'</span>\n' +
+                            '<span id="comment-maxDate" style="display:none">'+v.Created+'</span>\n' +
+                            '<span class="comment_date">'+v.Created+'</span>\n' +
+                            '<a id="a_comment_author_4334988" href="'+v.Site+'" target="_blank">'+v.Name+'</a>\n' +
+                            '</div>' +
+                            '<div class="feedbackCon">\n' +
+                            '<div id="comment_body_4334988" class="blog_comment_body">'
+                            + v.Review;
+
+                        if (v.Reply != '') {
+                               str += '<div class="feedbackCon">' + v.Reply + '<span class="comment_date" style="display: block;text-align: right">' + v.Updated + '</span>' +
+                                '</div>'
+                            }
+                            str += '</div><div class="comment_vote"></div></div></div>'
+
+                    })
+
+                    $("#beforeReview").after(str);
+
+
+                    var page = "";
+                    if (Paginator.currentPage > 1) {
+                        page += '<a href="javascript:;" class="prev" onclick="page('+(Paginator.currentPage - 1)+')">上一页</a>'
+                    }
+                    if(Paginator.currentPage < Paginator.totalPage){
+                        page += '<a href="javascript:;" class="prev" onclick="page('+(Paginator.currentPage + 1)+')">下一页</a>'
+                    }
+
+                    page += '<span class="current" style="padding-left: 5px">第 '+Paginator.currentPage+' 页 </span>';
+                    page += '<span class="num">总 '+Paginator.totalPage+' 页</span>';
+
+                    $("#comment_pager_bottom").html(page);
+                }
+            }
+        });*/
+
+    })
+
+    function page(page) {
+        $.ajax({
+            url:'/article/review/{{$.Data.Id}}.html?page='+page,
+            type:'get',
+            success:function (data) {
+
+                if (data.code == 200) {
+                    var list = data.Data;
+                    var Paginator = data.Paginator;
+                    var str = "";
+
+                    if (list.length > 0) {
+
+                        $.each(list, function (k, v) {
+
+                            var id = (k + 1 + parseInt(Paginator.currentPage - 1) * parseInt(Paginator.pageSize))
+                            str += '<div class="feedbackItem">' +
+                                '<div class="feedbackListSubtitle">' +
+                                '<div class="feedbackManage">' +
+                                '<span class="comment_actions"></span></div>' +
+                                '<a href="#' + id + '" class="layer"># ' + id + '楼</a>\n' +
+                                '<a name="' + id + '" id="comment_anchor_' + id + '"></a>\n' +
+                                '<span id="comment-maxId" style="display:none">' + v.Id + '</span>\n' +
+                                '<span id="comment-maxDate" style="display:none">' + v.Created + '</span>\n' +
+                                '<span class="comment_date">' + v.Created + '</span>\n' +
+                                '<a id="a_comment_author_4334988" href="' + v.Site + '" target="_blank">' + v.Name + '</a>\n' +
+                                '</div>' +
+                                '<div class="feedbackCon">\n' +
+                                '<div id="comment_body_4334988" class="blog_comment_body">'
+                                + v.Review;
+
+                            if (v.Reply != '') {
+                                str += '<div class="feedbackCon">' + v.Reply + '<span class="comment_date" style="display: block;text-align: right">' + v.Updated + '</span>' +
+                                    '</div>'
+                            }
+                            str += '</div><div class="comment_vote"></div></div></div>'
+
+                        })
+
+                        $("#beforeReview").html(str);
+
+
+                        var page = "";
+                        if (Paginator.currentPage > 1) {
+                            page += '<a href="javascript:;" class="prev" onclick="page(' + (Paginator.currentPage - 1) + ')">上一页</a>'
+                        }
+                        if (Paginator.currentPage < Paginator.totalPage) {
+                            page += '<a href="javascript:;" style="margin-left: 5px" class="prev" onclick="page(' + (Paginator.currentPage + 1) + ')">下一页</a>'
+                        }
+
+                        page += '<span class="current" style="padding-left: 5px">第 ' + Paginator.currentPage + ' 页 </span>';
+                        page += '<span class="num">总 ' + Paginator.totalPage + ' 页</span>';
+
+                        $("#comment_pager_bottom").html(page);
+                    }
+                    else {
+                        $("#blog-comments-placeholder").hide()
+                    }
+                }
+            }
+        });
+    }
+</script>

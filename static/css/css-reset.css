@@ -1,0 +1,42 @@
+﻿* {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+img {
+  border: 0;
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+button:focus,
+input:focus,
+textarea:focus {
+  outline: inherit;
+}
+textarea {
+  resize: none;
+}
+button {
+  border: none;
+  cursor: pointer;
+}
+.clear {
+  zoom: 1;
+}
+.clear:after {
+  content: "";
+  display: block;
+  clear: both;
+}

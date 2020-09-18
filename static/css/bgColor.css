@@ -1,0 +1,22 @@
+.diyBg{
+    background-color: #000000 !important;
+    border: 1px solid #000000 !important;
+}
+#navList a:hover {
+    color: #000000 !important;
+}
+
+.header-bg{
+    background-image: url(/static/img/bg1.jpg)!important;
+    /*background-size: cover!important;*/
+    background-size: contain !important;
+}
+
+#blogTitle > h1 {
+    left: unset!important;
+    text-align: unset!important;
+}
+
+#blogTitle{
+    background-image: unset !important;
+}

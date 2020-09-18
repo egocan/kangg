@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+    
+    <head>
+        <meta charset="UTF-8">
+        <title>欢迎页面-X-admin2.2</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+        <link rel="stylesheet" href="/static/css/font.css">
+        <link rel="stylesheet" href="/static/css/xadmin.css">
+        <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/static/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/static/js/xadmin.js"></script>
+        <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+        <!--[if lt IE 9]>
+          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <style>
+        .level_0{
+
+        }
+        .level_1{
+            padding-left: 20px;
+        }
+        .level_2{
+            padding-left: 40px;
+        }
+        .level_3{
+            padding-left: 60px;
+        }
+        .level_4{
+            padding-left: 80px;
+        }
+        .level_5{
+            padding-left: 100px;
+        }
+        .level_6{
+            padding-left: 120px;
+        }
+    </style>
+    <body>
+        <div class="x-nav">
+            <span class="layui-breadcrumb">
+                <a href="">首页</a>
+                <a href="">演示</a>
+                <a>
+                    <cite>导航元素</cite></a>
+            </span>
+            <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+                <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
+            </a>
+        </div>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body ">
+                            <blockquote class="layui-elem-quote x-red">注意：直接删除上级分类同时会删除下级分类</blockquote>
+                        </div>
+                        <div class="layui-card-header" style="height: 100%">
+                            <form class="layui-form">
+                                <div class="layui-form-item">
+                                    <label for="username" class="layui-form-label" style="font-size: 12px;">
+                                        <span class="x-red">*</span>说说</label>
+                                    <div class="layui-input-block">
+                                        <input required lay-verify="required" style="width: 60%;" type="text" id="content" name="content" autocomplete="off" class="layui-input"></div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label for="username" class="layui-form-label" style="font-size: 12px;">
+                                        <span class="x-red">*</span>来源</label>
+                                    <div class="layui-input-block">
+                                        <input value="" required lay-verify="required" style="width: 60%;" type="text" id="source" name="source" autocomplete="off" class="layui-input"></div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label for="L_repass" class="layui-form-label"></label>
+                                    <button class="layui-btn" lay-filter="add" lay-submit="save">保存</button>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="layui-card-body ">
+                            <table class="layui-table layui-form">
+                              <thead>
+                              <tr>
+                                  <th>ID</th>
+                                  <th>内容</th>
+                                  <th>来源</th>
+                                  <th>创建时间</th>
+                                  <th>状态</th>
+                                  <th>操作</th>
+                              </tr>
+                              </thead>
+                              <tbody class="x-cate">
+                                {{range $key ,$value := $.AWord}}
+                                    <tr>
+                                        <td>{{$value.Id}}</td>
+                                        <td>
+                                            {{$value.Content}}
+                                        </td>
+                                        <td>{{$value.Source}}</td>
+                                        <td>{{$value.Created}}</td>
+                                        <td>{{$value.Status}}</td>
+                                        <td class="td-manage">
+                                            <button class="layui-btn layui-btn layui-btn-xs"  onclick="xadmin.open('编辑','{{urlfor "admin.AWordController.Put"}}?id={{$value.Id}}')" ><i class="layui-icon">&#xe642;</i>编辑</button>
+                                            {{/*<button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="xadmin.open('编辑','admin-edit.html')" ><i class="layui-icon">&#xe642;</i>添加子栏目</button>
+                                            */}}<button class="layui-btn-danger layui-btn layui-btn-xs"  onclick="member_del(this,'{{$value.Id}}')" href="javascript:;" ><i class="layui-icon">&#xe640;</i>删除</button>
+                                        </td>
+                                    </tr>
+                                {{end}}
+
+                              </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+          layui.use(['form','layer'], function(){
+              $ = layui.jquery;
+              var form = layui.form,
+                  layer = layui.layer;
+
+              //监听提交
+              form.on('submit(add)',
+                  function(data) {
+
+                      var content = data.field.content;
+                      var source = data.field.source;
+
+                      $.ajax({
+                          url:'/admin/aword',
+                          type:'post',
+                          data:{"content":content,"source":source},
+                          success:function (data) {
+                              console.log(data);
+                              if (data.code == 200){
+                                  layer.alert(data.msg, {
+                                      icon: 6
+                                  },function () {
+                                      var index= parent.layer.getFrameIndex(window.name); //获取当前窗口的name
+                                      //parent.layer.close(index);
+                                      parent.location.reload();
+                                  });
+                              }else{
+                                  layer.alert(data.msg, {
+                                      icon: 5
+                                  });
+                              }
+
+                          }
+                      });
+
+                      /*console.log(str);
+                      //发异步，把数据提交给php
+                      layer.alert("增加成功", {
+                          icon: 6
+                      });*/
+                      return false;
+                  }
+              );
+
+
+          });
+
+
+
+          /*删除*/
+          function member_del(obj, id) {
+              layer.confirm('确认要删除吗(将同步删除下级分类)？',
+                  function(index) {
+                      $.ajax({
+                          url:'/admin/aword/delete',
+                          type:'post',
+                          data:'id='+id,
+                          success:function (data) {
+                              //发异步删除数据
+                              $(obj).parents("tr").remove();
+                              layer.msg('已删除!', {
+                                  icon: 1,
+                                  time: 1000
+                              });
+                              window.location.reload();
+
+                          }
+                      });
+                  });
+          }
+   
+        </script>
+    </body>
+</html>

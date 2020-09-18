@@ -1,0 +1,123 @@
+
+
+ <div class="header-top">
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-xl-9 col-lg-10">
+     <div class="spacial-offer">
+      <div class="offer-info">
+       <i class="far fa-clock"></i>
+       <!-- <p>Friday,<span>25 Mar 2020</span></p> -->
+       <p id="current_time"></p>
+      </div>
+      <div class="spacial-offer-slider">
+        {{range $k ,$v := $.AWord}}
+       <div class="spacial-offer-slide">
+
+        <a href="#">{{$v.Content}}</a>
+
+       </div>
+       {{end}}
+      </div>
+     </div>
+    </div>
+    <!-- 语言选择 -->
+    <!-- <div class="col-xl-3 col-lg-2 text-right">
+     <div class="language-select">
+      <div class="lang-icon">
+       <img src="assets/img/icon/lang-en.png" alt="lang-en" />
+       <a href="#">English <i class="far fa-angle-down"></i></a>
+      </div>
+      <ul class="lang-list">
+       <li><a href="#">Arabic</a></li>
+       <li><a href="#">Bengali</a></li>
+       <li><a href="#">Finnish</a></li>
+       <li><a href="#">Hindi</a></li>
+      </ul>
+     </div>
+    </div> -->
+   </div>
+  </div>
+ </div>
+ <div class="main-menu-area">
+  <div class="container-fluid">
+   <div class="row align-items-center clearfix">
+    <div class="col-xl-2 col-lg-4 col-md-5">
+     <div class="logo title copyright">
+       <h2>
+      <a href="/">{{$.title}}</a>
+      </h2>
+     </div>
+     <div class="search-wap search-br-left">
+      <a href="#" class="search-open"><i class="far fa-search"></i></a>
+     </div>
+    </div>
+    <div class="col-xl-7 col-lg-12  d-none d-xl-block">
+     <nav class="main-menu mobile-menu-active">
+       <ul>
+            {{range $k ,$v := $.Menu}}
+                <li>
+                    <a target="{{$v.Target}}" href="{{$v.Url}}">
+                        {{$v.Title}}
+                    </a>
+                    <ul>
+                        {{range $kk,$vv := $v.Son}}
+                            <li>
+                                <a target="{{$vv.Target}}"  href="{{$vv.Url}}">{{$vv.Title}}</a>
+                            </li>
+                        {{end}}
+                    </ul>
+                </li>
+            {{end}}
+        </ul>
+
+     </nav>
+    </div>
+    <div class="col-xl-3 col-lg-8 col-md-7  d-flex justify-content-end align-items-center">
+     <div class="hamburger-menu">
+      <a href="#" class="aside-open"><span class="aside-bar"></span></a>
+     </div>
+     <div class="header-social">
+      <a href="#"><i class="fab fa-weixin"></i></a>
+      <a href="#"><i class="fab fa-qq"></i></a>
+      <a href="#"><i class="fab fa-weibo"></i></a>
+      <a href="#"><i class="fab fa-google-plus-g"></i></a>
+     </div>
+    </div>
+    <div class="col-xl-12">
+     <div class="mobile-menu-area"></div>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <script>
+function getCurDate()
+{
+ var d = new Date();
+ var week;
+ switch (d.getDay()){
+ case 1: week="周一"; break;
+ case 2: week="周二"; break;
+ case 3: week="周三"; break;
+ case 4: week="周四"; break;
+ case 5: week="周五"; break;
+ case 6: week="周六"; break;
+ default: week="周天";
+ }
+ var years = d.getFullYear();
+ var month = add_zero(d.getMonth()+1);
+ var days = add_zero(d.getDate());
+ var ndate =week+",&nbsp"+"<span>"+ years+"/"+month+"/"+days+"</span>";
+ document.getElementById("current_time").innerHTML= ndate;
+}
+
+function add_zero(temp)
+{
+ if(temp<10) return "0"+temp;
+ else return temp;
+}
+
+setInterval("getCurDate()",100);
+
+</script>

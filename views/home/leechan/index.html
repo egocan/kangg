@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{{$.index}} - {{$.title}}</title>
+    <meta name="keywords" content="{{$.keyword}}" />
+    <meta name="description" content="{{$.description}}" />
+    <link rel="stylesheet" type="text/css" href="/static/css/slidepage.css">
+    <link rel="stylesheet" href="/static/css/css-reset.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+
+</head>
+<body>
+<!-- 页面主体 -->
+<div  class="slidePage-container"  id="slidePage-container">
+	<div class="item page5 banner banner5">
+		<div class="chushu-con step step1 slideDown" data-delay="100">
+			<h1 style="font-size: 42px;text-shadow: 0px 1px 2px #ddd;">Welcome to {{$.title}}</h1>
+			<p style="font-size: 16px;">{{$.tag}}</p>
+			<button><a class="j-create-book" href="/list.html">进入博客</a></button>
+		</div>
+	</div>
+</div>
+<script src="/static/js/jquery-2.2.0.min.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            url:'http://www.taobao.com/help/getip.php',
+            dataType:"jsonp",
+            type: "GET"
+        });
+
+
+    });
+    function ipCallback(data) {
+        var ip = data.ip;
+        var arr = ip.split('.');
+        var number = 0;
+        for (i = 0 ; i<arr.length;i++){
+            number += parseInt(arr[i]);
+        }
+        $('.banner5').css("background","url(/static/img/"+number%13+".jpg) no-repeat");
+	$('.banner5').css("background-size","cover");
+    }
+</script>

@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="never" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>{{$.index}} - {{$.title}}</title>
+    <meta name="description" content="{{$.keyword}}"/>
+    <meta name="keywords" content="{{$.description}}">
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/static/css/blog-common.min.css" />
+    <link id="MainCss" rel="stylesheet" href="/static/css/bundle-codinglife.min.css" />
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/static/css/bundle-codinglife-mobile.min.css" />
+    <link rel="stylesheet" href="/static/css/{{$.bgClass}}.css" />
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+    {{template "home/leechan/header.html" .}}
+
+    <div id="main">
+        <div id="mainContent" style="margin-bottom: 20px">
+            <div class="forFlow">
+                <div id="post_detail">
+                    <!--done-->
+                    {{if gt .Paginator.TotalPage 0}}
+                    <div id="blog-comments-placeholder" style="margin-top: unset">
+                        <div id="comment_pager_top"></div>
+                        <br>
+                        <div class="feedback_area_title">留言列表</div>
+                        <div class="feedbackNoItems">
+                            <div class="feedbackNoItems">
+                            </div>
+                        </div>
+                        {{/*评论*/}}
+                        {{range $k,$v := $.Data}}
+                        <div class="feedbackItem">
+                            <div class="feedbackListSubtitle">
+                                <div class="feedbackManage">
+                                    <span class="comment_actions">
+                                        {{/*<a href="javascript:void(0);" onclick="return GetCommentBody(4334988)">
+                                            修改
+                                        </a>
+                                        <a href="javascript:void(0);" onclick="return DelComment(4334988, this,'11370215')">
+                                            删除
+                                        </a>*/}}
+                                    </span>
+                                </div>
+
+                                <a href="#{{IndexForOne $k $.Paginator.CurrentPage $.Paginator.PageSize}}" class="layer">#{{IndexForOne $k $.Paginator.CurrentPage $.Paginator.PageSize}}楼</a>
+                                <a name="{{IndexForOne $k $.Paginator.CurrentPage $.Paginator.PageSize}}" id="comment_anchor_{{IndexForOne $k $.Paginator.CurrentPage $.Paginator.PageSize}}"></a>
+
+                                <span id="comment-maxId" style="display:none">{{IndexForOne $k $.Paginator.CurrentPage $.Paginator.PageSize}}</span>
+                                <span id="comment-maxDate" style="display:none">{{dateformat $v.Created "2006/01/02 下午3:00:04"}}</span>
+                                <span class="comment_date">{{dateformat $v.Created "2006-01-02 15:04"}}</span>
+                                <a id="a_comment_author_4334988" href="{{$v.Site}}" target="_blank">{{$v.Name}}</a>
+                            </div>
+                            <div class="feedbackCon">
+                                <div id="comment_body_4334988" class="blog_comment_body">
+                                    {{$v.Review}}
+                                    {{ if $v.Reply}}
+                                    <div class="feedbackCon">{{$v.Reply}}
+                                        <span class="comment_date" style="display: block;text-align: right">{{dateformat $v.Updated "2006-01-02 15:04"}}</span>
+                                    </div>
+                                    {{end}}
+                                </div>
+                                <div class="comment_vote">
+                                    {{/*<a href="javascript:void(0);" class="comment_digg" onclick="return voteComment('4334988', 'Digg', this);">
+                                        支持(0)
+                                    </a>
+                                    <a href="javascript:void(0);" class="comment_burry" onclick="return voteComment('4334988', 'Bury', this);">
+                                        反对(0)
+                                    </a>*/}}
+                                </div>
+                                {{/*<span id="comment_4334988_avatar" style="display:none">
+                                    https://pic.cnblogs.com/face/1154401/20170620111517.png
+                                </span>*/}}
+                            </div>
+                        </div>
+                        {{end}}
+                        {{/*评论结束*/}}
+                        <div id="comment_pager_bottom">
+                            {{if gt .Paginator.CurrentPage 1}}
+                                <a class="prev" href="{{urlfor "home.MessageController.List"}}?page={{IndexDecrOne $.Paginator.CurrentPage}}">上一页</a>
+                            {{end}}
+                            {{if lt .Paginator.CurrentPage .Paginator.TotalPage}}
+                                <a class="next" href="{{urlfor "home.MessageController.List"}}?page={{IndexAddOne $.Paginator.CurrentPage}}">下一页</a>
+                            {{end}}
+                            <span class="current">第 {{.Paginator.CurrentPage}} 页 </span>
+                            <span class="num">总 {{.Paginator.TotalPage}} 页</span>
+                        </div>
+                    </div>
+                    {{end}}
+
+                    <div id="topics" style="margin-top: 20px">
+                        <div class="post">
+                            <form id="form">
+                                <div id="" class="div_my_zzk" style="text-align: center">
+                                    <input placeholder="KanGuoGou" style="width: 90%" type="text" id="name" name="name"  class="input_my_zzk">
+                                </div>
+                                <div id="" class="div_my_zzk" style="text-align: center">
+                                    <input placeholder="http://www.kanguogou.com" style="width: 90%" type="text" id="mail" name="mail"  class="input_my_zzk">
+                                </div>
+                                <div id="" class="div_my_zzk" style="text-align: center">
+                                    <textarea placeholder="..." style="width: 90%;height: 200px" id="review" name="review" class="input_my_zzk"></textarea>
+                                </div>
+                                <div id="" class="div_my_zzk" style="width: 91%;text-align: right;padding-left: 4px">
+                                    <input type="button" value="提交" id="btnZzk" class="btn_my_zzk">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!--end: forFlow -->
+        </div><!--end: mainContent 主体内容容器-->
+
+        <div id="sideBar">
+            {{template "home/leechan/right.html" .}}
+            <!--end: sideBarMain -->
+        </div><!--end: sideBar 侧边栏容器 -->
+        <div class="clear"></div>
+    </div><!--end: main -->
+    {{template "home/leechan/footer.html" .}}
+    <!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+</body>
+</html>
+<script src="/static/js/jquery-2.2.0.min.js"></script>
+<script>
+    $(function () {
+        $("#btnZzk").click(function () {
+            $.ajax({
+                url:'/message/save',
+                type:'post',
+                data:$("#form").serialize(),
+                success:function (data) {
+                    if (data.code == 200) {
+                        window.location.reload()
+                    }
+                    console.log(data);
+                }
+            });
+        })
+    })
+</script>

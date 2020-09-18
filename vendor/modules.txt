@@ -1,0 +1,66 @@
+# github.com/astaxie/beego v1.12.0
+github.com/astaxie/beego
+github.com/astaxie/beego/config
+github.com/astaxie/beego/orm
+github.com/astaxie/beego/validation
+github.com/astaxie/beego/context
+github.com/astaxie/beego/context/param
+github.com/astaxie/beego/grace
+github.com/astaxie/beego/logs
+github.com/astaxie/beego/session
+github.com/astaxie/beego/toolbox
+github.com/astaxie/beego/utils
+# github.com/bradfitz/gomemcache v0.0.0-20180710155616-bc664df96737
+github.com/bradfitz/gomemcache/memcache
+# github.com/go-sql-driver/mysql v1.5.0
+github.com/go-sql-driver/mysql
+# github.com/gomodule/redigo v2.0.1-0.20180627144507-2cd21d9966bf+incompatible
+github.com/gomodule/redigo/redis
+github.com/gomodule/redigo/internal
+# github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1
+github.com/gopherjs/gopherjs/js
+# github.com/jtolds/gls v4.20.0+incompatible
+github.com/jtolds/gls
+# github.com/konsorten/go-windows-terminal-sequences v1.0.1
+github.com/konsorten/go-windows-terminal-sequences
+# github.com/lib/pq v1.0.0
+github.com/lib/pq
+github.com/lib/pq/oid
+# github.com/shiena/ansicolor v0.0.0-20151119151921-a422bbe96644
+github.com/shiena/ansicolor
+# github.com/silenceper/wechat v1.2.3
+github.com/silenceper/wechat
+github.com/silenceper/wechat/cache
+github.com/silenceper/wechat/material
+github.com/silenceper/wechat/menu
+github.com/silenceper/wechat/message
+github.com/silenceper/wechat/user
+github.com/silenceper/wechat/context
+github.com/silenceper/wechat/device
+github.com/silenceper/wechat/js
+github.com/silenceper/wechat/miniprogram
+github.com/silenceper/wechat/oauth
+github.com/silenceper/wechat/pay
+github.com/silenceper/wechat/qr
+github.com/silenceper/wechat/server
+github.com/silenceper/wechat/tcb
+github.com/silenceper/wechat/util
+# github.com/sirupsen/logrus v1.4.2
+github.com/sirupsen/logrus
+# github.com/smartystreets/assertions v0.0.0-20180927180507-b2de0cb4f26d
+github.com/smartystreets/assertions
+github.com/smartystreets/assertions/internal/go-render/render
+github.com/smartystreets/assertions/internal/oglematchers
+# github.com/smartystreets/goconvey v1.6.4
+github.com/smartystreets/goconvey/convey
+github.com/smartystreets/goconvey/convey/reporting
+github.com/smartystreets/goconvey/convey/gotest
+# golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2
+golang.org/x/crypto/acme/autocert
+golang.org/x/crypto/acme
+golang.org/x/crypto/pkcs12
+golang.org/x/crypto/pkcs12/internal/rc2
+# golang.org/x/sys v0.0.0-20190422165155-953cdadca894
+golang.org/x/sys/unix
+# gopkg.in/yaml.v2 v2.2.2
+gopkg.in/yaml.v2

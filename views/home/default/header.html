@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="slene, Unknown"/>
+    <link rel="stylesheet" href="/static/lib/layui/css/layui.css" />
+    <title>{{$.index}} - {{$.title}} {{$.tag}}</title>
+    <meta name="description" content="{{$.description}}"/>
+    <meta name="keywords" content="{{$.keyword}}">
+    <link rel="shortcut icon" href="/static/img/favicon.png"/>
+    <script>/* Beego Compress group `lib` begin */</script>
+    <link rel="stylesheet" href="/static/default/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/static/default/css/bootstrap-theme.css"/>
+    <link rel="stylesheet" href="/static/default/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/default/css/prettify.css"/>
+    <link rel="stylesheet" href="/static/default/css/select2.css"/>
+    <script>/* end */</script>
+    <!--[if IE 7]>
+    <script>/* Beego Compress group `ie7` begin */</script>
+    <link rel="stylesheet" href="/static/default/css/font-awesome-ie7.min.css"/>
+    <script>/* end */</script>
+    <![endif]-->
+    <script>/* Beego Compress group `app` begin */</script>
+    <link rel="stylesheet" href="/static/default/css/base.css"/>
+    <link rel="stylesheet" href="/static/default/css/main.css"/>
+    <script>/* end */</script>
+
+    <!--[if lt IE 9]>
+    <script>/* Beego Compress group `ie9` begin */</script>
+    <script type="text/javascript" src="/static/default/js/html5shiv.js"></script>
+    <script type="text/javascript" src="/static/default/js/respond.min.js"></script>
+    <script>/* end */</script>
+    <![endif]-->
+
+</head>
+<body id="front">
+<noscript>请启用您浏览器的 JavaScript 选项！</noscript>
+<div id="wrapper">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container" data-toggle="clingify">
+            <div class="row">
+                <div class="navbar-header">
+
+                    <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="hidden-xs logo" href="/">
+                        <img style="height:32px;" src="{{$.image}}">
+                    </a>
+                    <div class="visible-xs text-center">
+                        <a class="navbar-brand" href="/">
+                            {{$.title}}
+                        </a>
+
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse" role="navigation" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        {{/*<li class="active"><a href="/">首页</a></li>*/}}
+                        {{range $k ,$v := $.Menu}}
+                            <li>
+                                <a target="{{$v.Target}}" id="blog_nav_contact" href="{{$v.Url}}">
+                                    {{$v.Title}}
+                                </a>
+                            </li>
+                        {{end}}
+                    </ul>
+                    <div class="hidden-sm hidden-xs nav-github pull-right">
+                        <span rel="show-github" data-user="1920853199" data-repo="go-blog"></span>
+                        <span rel="show-github" data-user="1920853199" data-repo="go-blog" data-type="fork"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>

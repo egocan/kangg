@@ -1,0 +1,374 @@
+﻿html,
+body {
+  width: 100%;
+  height: 100%;
+  /*min-width: 1000px;*/
+  font-family: "微软雅黑";
+  overflow-x: hidden;
+}
+header {
+  position: fixed;
+  left: 0;
+  z-index: 2;
+  background: none;
+}
+header .chushula {
+  color: #fff;
+}
+header .top-nav {
+  color: #fff;
+}
+header .top-nav > a {
+  color: #fff;
+}
+header .top-nav .login button {
+  color: #fff;
+  border: 1px solid #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+header .top-nav .login button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+header .top-nav .login .user {
+  background: transparent;
+}
+header .top-nav .login .user .user-head .ico {
+  background: url(../images/user.png);
+}
+header .top-nav .login .user .user-head span {
+  color: #fff;
+}
+header .top-nav .login .user .user-con a {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+header .top-nav .login .user .user-con a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+header .top-nav .login .user:hover {
+  background: #ffffff;
+}
+header .top-nav .login .user:hover .user-head .ico {
+  /* background: url(../images/user2.png);*/
+}
+header .top-nav .login .user:hover .user-head span {
+  color: #666;
+}
+header .top-nav .login .user:hover .user-con a {
+  color: #666;
+  background: rgba(255, 255, 255, 0.1);
+}
+header .top-nav .login .user:hover .user-con a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+.banner {
+  width: 100%;
+  height: 100%;
+  /*min-width: 1000px;*/
+  overflow: hidden;
+}
+.banner .chushu-con {
+  width: 100%;
+  /* position: absolute;
+   top: 50%;
+   left: 50%;*/
+  /*margin-left: -500px;*/
+  text-align: center;
+  color: #fff;
+}
+.banner .con {
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  /*margin-left: -500px;*/
+}
+
+.banner .chushu-con button {
+  margin-top: 20px;
+  background: transparent;
+}
+.banner .chushu-con button a {
+  display: block;
+  width: 136px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 16px;
+  color: #fff;
+  font-family: "微软雅黑";
+  border: 2px solid #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+.banner .chushu-con button a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.banner .con h2 {
+  font-size: 50px;
+  line-height: 82px;
+  font-family: "微软雅黑";
+}
+.banner .con p {
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  margin: 0 auto;
+}
+.banner .copyright {
+  font-size: 12px;
+  line-height: 14px;
+  color: #bbb;
+  position: absolute;
+}
+.banner1 {
+  position: relative;
+  /*background: url(../images/banner1.png) no-repeat*/;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='1.jpg', sizingMethod='scale');
+}
+.banner1 .chushu-con {
+  margin-top: -169px;
+}
+.banner1 .chushu-con h2 {
+  font-size: 50px;
+  line-height: 80px;
+  text-shadow: -1px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.banner1 .chushu-con p {
+  font-size: 16px;
+  line-height: 46px;
+  text-shadow: -1px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.banner1 .copyright {
+  right: 65px;
+  bottom: 90px;
+}
+.banner1 .chushula-btn {
+  width: 100%;
+  height: 76px;
+  color: #fff;
+  font-size: 20px;
+  line-height: 76px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  cursor: pointer;
+  background: #1f1f20;
+}
+.banner1 .chushula-btn strong {
+  font-weight: bold;
+}
+.banner2 {
+  background: #d9e3bf;
+}
+.banner2 .con {
+  color: #554d45;
+  margin-top: -252px;
+}
+.banner2 .con img {
+  width: 40%;
+  margin-bottom: 1px;
+}
+.banner2 .con p {
+  width: 550px;
+}
+.banner3 {
+  background: #5ccb9d;
+}
+.banner3 .con {
+  text-align: left;
+  margin-top: -291px;
+}
+.banner3 .con p {
+  width: 480px;
+  margin: 0;
+  text-align: left;
+  margin-bottom: 25px;
+}
+.banner3 .con > span {
+  font-size: 12px;
+  line-height: 14px;
+  color: #aff3d7;
+}
+.banner3 .con .book-list {
+  position: relative;
+  margin-top: 5%;
+  width: 1000px;
+  height: 360px;
+}
+.banner3 .con .book-list span {
+  position: absolute;
+  font-family: "宋体";
+  top: 160px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 40px;
+  color: rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.1);
+}
+.banner3 .con .book-list span:hover {
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.2);
+}
+.banner3 .con .book-list .prev {
+  left: 0;
+}
+.banner3 .con .book-list .next {
+  right: 0;
+}
+.banner3 .con .book-list .list-img-warp {
+  position: absolute;
+  left: 75px;
+  top: 0;
+  height: 360px;
+  width: 860px;
+  overflow: hidden;
+}
+.banner3 .con .book-list .list-img-warp .list {
+  position: absolute;
+  left: 0;
+  width: 3528px;
+}
+.banner3 .con .book-list .list-img-warp .list img {
+  float: left;
+  margin-right: 35px;
+  width: 259px;
+  height: 360px;
+}
+.banner4 {
+  background: #34dbc9;
+}
+.banner4 .con {
+  position: relative;
+}
+.banner4 .con p {
+  width: 630px;
+}
+.banner4 .con .list {
+  position: absolute;
+  top: 50%;
+  margin-top: -15%;
+}
+.banner4 .con .list li {
+  float: left;
+  width: 173px;
+  margin-right: 102px;
+  text-align: center;
+}
+.banner4 .con .list li img {
+  margin-bottom: 18px;
+}
+.banner4 .con .list li span {
+  font-size: 14px;
+  line-height: 16px;
+}
+.banner4 .con .list li:last-child {
+  margin-right: 0;
+}
+.banner4 .con .text {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  margin-top: 128px;
+}
+.banner5 {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  /*margin-top: -20px;*/
+  /*background: url(../images/5.jpg) no-repeat;*/
+  background-size:cover;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='1.jpg', sizingMethod='scale');
+  /*background: red;*/
+}
+/*.banner5 .chushu-con {
+  margin-top: 50%;
+}*/
+.banner5 .chushu-con h2 {
+  font-size: 40px;
+  line-height: 72px;
+  letter-spacing: 12px;
+}
+.banner5 .chushu-con p {
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 8px;
+  margin-top: 20px;
+  margin-bottom: 18px;
+}
+.banner5 .copyright {
+  right: 50px;
+  bottom: 23px;
+}
+.slidePage-container .item {
+  overflow-y: hidden;
+}
+.pro-nav {
+  position: fixed;
+  left: 75px;
+  top: 50%;
+  margin-top: -55px;
+}
+.pro-nav a {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.pro-nav a:last-child {
+  margin-bottom: 0;
+}
+.pro-nav .active {
+  background: #fff;
+}
+.about {
+  position: fixed;
+  left: 65px;
+  bottom: 20px;
+}
+.about a {
+  float: left;
+  font-size: 14px;
+  line-height: 18px;
+  color: #fff;
+  margin-right: 20px;
+}
+.scan {
+  display: none;
+  position: fixed;
+  left: 249px;
+  bottom: 45px;
+  z-index: 3;
+  width: 120px;
+  font-size: 12px;
+  padding: 19px 19px 16px 19px;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.1), -2px 3px 3px rgba(0, 0, 0, 0.1);
+  line-height: 20px;
+  color: #666;
+  background: #fff;
+}
+.scan img {
+  margin-bottom: 8px;
+}
+.banner1-scan {
+  bottom: 120px;
+}

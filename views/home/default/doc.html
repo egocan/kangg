@@ -1,0 +1,87 @@
+﻿<link rel="stylesheet" href="/static/lib/layui/css/layui.css" />
+<link rel="stylesheet" href="/static/md/css/editormd.preview.css" />
+<link rel="stylesheet" href="/static/default/css/blog-common.min.css" />
+<link id="MainCss" rel="stylesheet" href="/static/default/css/bundle-codinglife.min.css" />
+
+{{template "home/default/header.html" .}}
+<style>
+    blockquote{
+        border:none;
+    }
+</style>
+<div id="main">
+    <div class="container main-container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div id="markdown" class="cell slim page-box markdown-body editormd-html-preview" style="padding-top: 20px">
+                        {{str2html $.Data.Html}}
+                    </div>
+                    {{template "home/default/review.html" .}}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{{template "home/default/footer.html" .}}
+
+<script src="/static/md/lib/marked.min.js"></script>
+<script src="/static/md/lib/prettify.min.js"></script>
+
+<script src="/static/md/lib/raphael.min.js"></script>
+<script src="/static/md/lib/underscore.min.js"></script>
+<script src="/static/md/lib/sequence-diagram.min.js"></script>
+<script src="/static/md/lib/flowchart.min.js"></script>
+<script src="/static/md/lib/jquery.flowchart.min.js"></script>
+
+<script src="/static/md/editormd.js"></script>
+{{/*<script type="text/javascript">
+    $(function() {
+        var testEditormdView2;
+
+        testEditormdView2 = editormd.markdownToHTML("markdown", {
+            markdown        : {{str2html $.Data.Desc}},
+            htmlDecode      : "style,script,iframe",  // you can filter tags decode
+            emoji           : true,
+            taskList        : true,
+            tex             : true,  // 默认不解析
+            flowChart       : true,  // 默认不解析
+            sequenceDiagram : true,  // 默认不解析
+        });
+    });
+</script>*/}}
+<script src="/static/js/jquery-2.2.0.min.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            url:'/pv/{{$.Data.Id}}.html',
+            type:'get',
+            success:function (data) {
+                console.log(data);
+            }
+        });
+
+        $(".like a").click(function () {
+            $.ajax({
+                url:'/article/like',
+                type:'post',
+                data:{"id":{{$.Data.Id}}},
+                success:function (data) {
+                    if(data.code == 200) {
+                        $(".like span").html("(" + data.like + ")")
+                    }
+                }
+            });
+        })
+    })
+
+</script>
+<script src="/static/lib/layui/layui.all.js"></script>
+<script>
+    //调用示例
+    layer.photos({
+        photos: 'body'
+        /*,anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）*/
+    });
+</script>

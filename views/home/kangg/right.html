@@ -1,0 +1,94 @@
+<div class="widget mb-60">
+  <h4 class="widget-title"><span>About Me</span></h4>
+  <div class="about-widget">
+   <div class="about-widget-thumb">
+    <img src="{{$.image}}" alt="about-widget" />
+    <div class="about-widget-head">
+     <h4><a href="http://kanguogou.com">{{$.name}}</a></h4>
+     <div class="about-widget-social">
+      <a href="#" class="facebook"><i class="fab fa-weixin"></i></a>
+      <a href="#" class="insta"><i class="fab fa-qq"></i></a>
+      <a href="#" class="pinterest"><i class="fab fa-weibo"></i></a>
+     </div>
+    </div>
+   </div>
+   <div class="about-widget-details">
+    <p>{{$.remark}}</p>
+    {{str2html $.RightAD1}}
+    <!-- <img src="/static/assets/img/ad1.png" alt="signature" /> -->
+   </div>
+  </div>
+ </div>
+ <div class="widget mb-60">
+  <h4 class="widget-title"><span>站点公告</span></h4>
+  <div class="about-widget-details">
+   <p>{{$.notice}}</p>
+  </div>
+ </div>
+ <div class="widget mb-60">
+  <h4 class="widget-title"><span>友情链接</span></h4>
+  <div class="widget-social-profile">
+    {{range $k ,$v := $.Link}}
+        <a href="{{$v.Url}}" target="_blank" style="color: #FFFFFF">{{$v.Title}}</a>
+    {{end}}
+   <!-- <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+   <a href="#" class="insta"><i class="fab fa-instagram"></i></a>
+   <a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a>
+   <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+   <a href="#" class="youtube"><i class="fab fa-youtube"></i></a> -->
+  </div>
+ </div>
+ <div class="widget mb-60">
+  <h4 class="widget-title"><span>阅读排行榜</span></h4>
+  <ul class="recent-posts">
+    {{range $k,$v := $.ArticlesReadSort}}
+                         <li>
+                             <a title="{{$v.Title}}" href="/detail/{{$v.Id}}.html">
+                                 {{IndexForOne $k 1 1}}. {{$v.Title}}({{$v.Pv}})
+                             </a>
+                         </li>
+     {{end}}
+  </ul>
+ </div>
+ <div class="widget mb-60 newsletter-widget-wrap">
+  <h4 class="widget-title"><span>标签云</span></h4>
+  <div class="newsletter-widget">
+    <div class="tagcolud">
+    {{range $k,$v := $.Tag}}
+                 <a style="display: block;float: left;padding: 5px;font-size: {{$v}}px" title="{{$k}}" href="/list.html?tag={{$k}}">
+                     {{$k}}
+                 </a>
+     {{end}}
+     </div>
+  </div>
+ </div>
+ <div class="widget mb-60">
+  <h4 class="widget-title"><span>随笔档案({{$.DateCount}})</span></h4>
+  <ul>
+   {{range $k,$v := $.DateTimeKey}}
+                    <li>
+                        <a title="{{StringReplace $v "-" "年"}}月" href="/list.html?date={{$v}}" rel="">
+                            {{StringReplace $v "-" "年"}}月({{index $.DateTime $v}})
+                        </a>
+                    </li>
+                {{end}}
+  </ul>
+ </div>
+ <div class="widget mb-60">
+  <h4 class="widget-title"><span>最新评论({{$.ReviewCount}})</span></h4>
+  <ul>
+    {{range $k,$v := $.Review}}
+                         <li>
+                             <a title="{{str2html $v.Review}}" href="/detail/{{$v.ArticleId}}.html">
+                                 {{str2html $v.Review}}
+                             </a>
+                         </li>
+                     {{end}}
+  </ul>
+ </div>
+ <div class="widget mb-60">
+  <div class="textwidget">
+    {{str2html $.RightAD2}}
+   <!-- <a href="#"><img src="/static/assets/img/ad2.png" alt="widget-add" /></a> -->
+  </div>
+ </div>

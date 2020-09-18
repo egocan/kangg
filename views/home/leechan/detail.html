@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="never" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>{{$.index}} - {{$.title}}</title>
+    <meta name="description" content="{{$.Data.Remark}}"/>
+    <meta name="keywords" content="{{$.Data.Tag}}"/>
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/static/css/blog-common.min.css" />
+    <link id="MainCss" rel="stylesheet" href="/static/css/bundle-codinglife.min.css" />
+    <link rel="stylesheet" href="/static/md/css/editormd.preview.css" />
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/static/css/bundle-codinglife-mobile.min.css" />
+    <link rel="stylesheet" href="/static/css/{{$.bgClass}}.css" />
+</head>
+<style>
+    .editormd-html-preview {
+        width: unset;
+    }
+    .like{
+        display: block;
+        width: 160px;
+        margin: 20px auto;
+        background: #E2523A;
+        color: #fff;
+        box-shadow: 1px 2px 6px 0px rgba(0,0,0,.2);
+        border-radius: 3px;
+        line-height: 40px;
+        text-align: center;
+    }
+    .like a {
+        color: #fff !important;
+    }
+</style>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+    {{template "home/leechan/header.html" .}}
+    {{/*<div id="header">
+        <div id="blogTitle">
+            <a id="lnkBlogLogo" href="/">
+                <img id="blogLogo" src="/static/images/logo.gif" alt="返回主页" />
+            </a>
+
+            <!--done-->
+            <h1>
+                <a id="Header1_HeaderTitle" class="headermaintitle" href="/">职业第三者</a>
+            </h1>
+            <h2>
+                如今的我，谈不上幸福，也谈不上不幸。
+            </h2>
+
+
+        </div><!--end: blogTitle 博客的标题和副标题 -->
+        <div id="navigator">
+
+            <ul id="navList">
+                <li>
+                    <a id="blog_nav_myhome" class="menu" href="/">
+                        首页</a>
+                </li>
+                <li>
+
+                    <a id="blog_nav_newpost" class="menu" href="/list.html">
+                        随笔</a>
+                </li>
+                <li>
+                    <a id="blog_nav_contact" class="menu" href="javascript:;">
+                        留言</a></li>
+                <li>
+                    <a id="blog_nav_rss" class="menu" href="javascript:;">
+                        订阅</a>
+                </li>
+            </ul>
+        </div><!--end: navigator 博客导航栏 -->
+    </div>*/}}
+    <!--end: header 头部 -->
+
+    <div id="main">
+        <div id="mainContent" style="margin-bottom: 20px">
+            <div class="forFlow">
+                <div id="post_detail">
+                    <!--done-->
+                    <div id="topics">
+                        <div class="post">
+                            <h1 class = "postTitle">
+                                <a id="cb_post_title_url" class="postTitle2" href="javascript:;">{{$.Data.Title}}</a>
+                            </h1>
+                            <div class="clear"></div>
+                            <div class="postBody markdown-body editormd-html-preview" id="postBody">
+                                {{str2html $.Data.Html}}
+                            </div>
+                            <div class="postDesc">
+                                <span id="post-date">{{dateformat $.Data.Created "2006-01-02 15:04:05"}}</span>&nbsp;
+                                <a href="javascript:;">{{$.Data.User.Name}}</a> 阅读(<span id="post_view_count">{{$.Data.Pv}}</span>) 评论(<span id="post_comment_count">{{$.Data.Review}}</span>)
+                                <span style="margin-left: 5px">标签：</span><a href="javascript:;">{{$.Data.Tag}}</a>
+                                <span style="margin-left: 5px">分类：</span><a href="javascript:;">{{$.Data.Category.Name}}</a>
+                            </div>
+                            <div>
+                                <span class="like">
+                                    <a href="javascript:;"> 很赞哦！ </a><span>({{$.Data.Like}})</span>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div><!--end: topics 文章、评论容器-->
+                </div>
+            </div>
+            {{template "home/leechan/review.html" .}}
+            <!--end: forFlow -->
+        </div><!--end: mainContent 主体内容容器-->
+
+        <div id="sideBar">
+            {{template "home/leechan/right.html" .}}
+            <!--end: sideBarMain -->
+        </div><!--end: sideBar 侧边栏容器 -->
+        <div class="clear"></div>
+    </div><!--end: main -->
+
+    {{template "home/leechan/footer.html" .}}
+    <!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+</body>
+</html>
+<script src="/static/js/jquery-2.2.0.min.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            url:'/pv/{{$.Data.Id}}.html',
+            type:'get',
+            success:function (data) {
+                console.log(data);
+            }
+        });
+
+        $(".like a").click(function () {
+            $.ajax({
+                url:'/article/like',
+                type:'post',
+                data:{"id":{{$.Data.Id}}},
+                success:function (data) {
+                    if(data.code == 200) {
+                        $(".like span").html("(" + data.like + ")")
+                    }
+                }
+            });
+        })
+    })
+
+</script>
+
+<script src="/static/md/lib/marked.min.js"></script>
+<script src="/static/md/lib/prettify.min.js"></script>
+
+<script src="/static/md/lib/raphael.min.js"></script>
+<script src="/static/md/lib/underscore.min.js"></script>
+<script src="/static/md/lib/sequence-diagram.min.js"></script>
+<script src="/static/md/lib/flowchart.min.js"></script>
+<script src="/static/md/lib/jquery.flowchart.min.js"></script>
+
+<script src="/static/md/editormd.js"></script>
+{{/*<script type="text/javascript">
+    $(function() {
+        var testEditormdView2;
+
+        testEditormdView2 = editormd.markdownToHTML("postBody", {
+            markdown        : {{str2html $.Data.Desc}},
+            htmlDecode      : "style,script,iframe",  // you can filter tags decode
+            emoji           : true,
+            taskList        : true,
+            tex             : true,  // 默认不解析
+            flowChart       : true,  // 默认不解析
+            sequenceDiagram : true,  // 默认不解析
+        });
+    });
+</script>*/}}
+<script src="/static/lib/layui/layui.all.js"></script>
+<script>
+    //调用示例
+    layer.photos({
+        photos: 'body'
+        /*,anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）*/
+    });
+</script>

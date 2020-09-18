@@ -1,0 +1,155 @@
+<div class="post-comments mb-60" id="blog-comments-placeholder">
+ <div class="post-comments-title mb-50">
+  <h4>评论</h4>
+ </div>
+ <div id="beforeReview"></div>
+
+ <div id="comment_pager_bottom"></div>
+
+</div>
+<div class="post-comment-form">
+ <h4 class="post-comment-title">点评一下</h4>
+ <div class="comment-form mt-35">
+  <form id="review">
+  <input type="hidden" name="aid" id="aid" value="{{$.Data.Id}}">
+   <div class="row">
+    <div class="col-lg-6">
+     <div class="form-group">
+      <label for="name" id="name-label">如何称呼您?</label>
+      <input type="text" name="name" id="name" placeholder="Maxien" />
+      <span><i class="fal fa-user"></i></span>
+     </div>
+    </div>
+    <div class="col-lg-6">
+     <div class="form-group">
+      <label for="mail" id="mail-label">如何联系您?</label>
+      <input type="email" id="mail" name="mail" placeholder="admin@kanguogou.com" />
+      <span><i class="fal fa-envelope-open"></i></span>
+     </div>
+    </div>
+    <!-- <div class="col-lg-12">
+     <div class="form-group">
+      <label for="tel" id="tel-label">Your Phone </label>
+      <input type="tel" id="tel" name="tel" placeholder="013 (3456) 778" />
+      <span><i class="fal fa-phone"></i></span>
+     </div>
+    </div> -->
+    <div class="col-lg-12">
+     <div class="form-group">
+      <label for="message" id="message-label">评论</label>
+      <textarea name="review" id="message" placeholder="Write here"></textarea>
+      <span><i class="fal fa-pen-alt"></i></span>
+     </div>
+    </div>
+    <div class="col-lg-12">
+     <button class="btn btn-theme mt-30" type="button" onclick="myreview()" id="btnZzk">发送 <i class="far fa-long-arrow-right"></i></button>
+    </div>
+   </div>
+  </form>
+ </div>
+</div>
+
+<script src="/static/js/jquery-2.2.0.min.js"></script>
+<script>
+  $(function(){
+    page(1)
+  })
+
+  function myreview() {
+            $.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型，或者用GET
+                url: "/article/review" ,//ip:端口/项目名称/Servlet名称
+                data: $('#review').serialize(),//获取表单里的数据到这里
+                success: function (result) {
+
+                    if (result.code == 200) {
+                        alert("成功发送！");
+                    }
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+            page(1)
+        }
+
+
+ function page(page) {
+         $.ajax({
+             url:'/article/review/{{$.Data.Id}}.html?page='+page,
+             type:'get',
+             success:function (data) {
+                //console.log(data);
+                 if (data.code == 200) {
+                     var list = data.Data;
+                     var Paginator = data.Paginator;
+                     var str = "";
+
+                     if (list.length > 0) {
+
+                         $.each(list, function (k, v) {
+
+                             var id = (k + 1 + parseInt(Paginator.currentPage - 1) * parseInt(Paginator.pageSize))
+                             str += ' <div class="latest-comments">\n'+
+                               '<ul>\n'+
+                                '<li>\n'+
+                                 '<div class="comments-box">\n'+
+                                   '<div class="comments-avatar">\n'+
+                                     '<a href="#' + id + '" class="layer"># ' + id + '楼</a>\n' +
+                                    '</div>\n'+
+                                  '<div class="comments-text">\n'+
+                                   '<div class="comments-author-name">\n'+
+                                    '<h5>' + v.Name + '</h5>\n'+
+                                    '<span class="float-right"><i class="far fa-calendar-alt"></i>' + v.Created + '</span>\n'+
+                                   '</div>\n'+
+                                   '<p>' + v.Review + '</p>\n'+
+                                  '</div>\n'+
+                                 '</div>\n';
+                                 if (v.Reply != '') {
+                                str +=  '<ul class="comments-reply">\n'+
+                                  '<li>\n'+
+                                   '<div class="comments-box">\n'+
+                                     '<div class="comments-avatar">\n'+
+                                       '<a href="#' + id + '" class="layer"> 回复</a>\n' +
+                                      '</div>\n'+
+                                    '<div class="comments-text">\n'+
+                                     '<div class="comments-author-name">\n'+
+                                      '<h5>'+ {{$.Data.User.Name}} +'</h5>\n'+
+                                      '<span class="float-right"><i class="far fa-calendar-alt"></i>' + v.Updated + '</span>\n'+
+                                     '</div>\n'+
+                                     '<p>' + v.Reply + ' </p>\n'+
+                                    '</div>\n'+
+                                  ' </div></li>\n'+
+                                 '</ul>\n'
+                               }
+                               str+='</li>\n'+
+                               '</ul>\n'+
+                              '</div>'
+
+                         })
+
+                         $("#beforeReview").html(str);
+
+
+                         var page = "";
+                         if (Paginator.currentPage > 1) {
+                             page += '<a href="javascript:;" class="prev" onclick="page(' + (Paginator.currentPage - 1) + ')">上一页</a>'
+                         }
+                         if (Paginator.currentPage < Paginator.totalPage) {
+                             page += '<a href="javascript:;" style="margin-left: 5px" class="prev" onclick="page(' + (Paginator.currentPage + 1) + ')">下一页</a>'
+                         }
+
+                         page += '<span class="current" style="padding-left: 5px">第 ' + Paginator.currentPage + ' 页 </span>';
+                         page += '<span class="num">总 ' + Paginator.totalPage + ' 页</span>';
+
+                         $("#comment_pager_bottom").html(page);
+                     }
+                     else {
+                         $("#blog-comments-placeholder").hide()
+                     }
+                 }
+             }
+         });
+     }
+</script>

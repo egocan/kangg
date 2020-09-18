@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+ <head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <title>{{$.index}} 第 {{.Paginator.CurrentPage}} 页 - {{$.title}}</title>
+  <meta name="description" content="{{$.keyword}}"/>
+  <meta name="keywords" content="{{$.description}}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon" />
+  <!-- All CSS -->
+  <!-- <link href="http://cdn.bootcss.com/slick-carousel/1.8.0/slick.min.css" rel="stylesheet"> -->
+
+  <link rel="stylesheet" href="/static/assets/css/animate.css" />
+  <link rel="stylesheet" href="/static/assets/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/static/assets/css/slick.css" />
+  <link rel="stylesheet" href="/static/assets/css/meanmenu.css" />
+  <link rel="stylesheet" href="/static/assets/css/main.css" />
+ </head>
+ <body>
+   <!-- preloader -->
+   <div id="preloader">
+    <div class="preloader">
+     <span></span>
+     <span></span>
+    </div>
+   </div>
+   <!-- preloader end -->
+   <!-- header start -->
+   <header class="header-area header-default">
+   {{template "home/kangg/header.html" .}}
+ </header>
+ <!-- header end -->
+ <!-- start search area -->
+ <div class="search-area">
+   {{template "home/kangg/searchbar.html" .}}
+ </div>
+ <!-- start search area -->
+ <!-- start side bar -->
+ <aside class="sidebar-group">
+  {{template "home/kangg/aside.html" .}}
+ </aside>
+  <!-- end side bar -->
+  <!-- main start -->
+  <main>
+    <!-- breadcrumb start -->
+    <section class="breadcrumb-area pt-100 pb-100" data-opacity="2" data-overlay="dark" style="background-image: url(/static/assets/img/breadcrumb-bg-1.jpg)">
+     <div class="container">
+      <div class="row justify-content-center">
+       <div class="col-lg-8 text-center">
+        <div class="breadcrumb-content">
+         <h3 class="title">Post Layouts Standard</h3>
+         <ul>
+          <li><a href="/">Home</a></li>
+          <li class="active">CONTACT</li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+    <!-- breadcrumb end -->
+
+   <!-- services start -->
+   <div class="service-area pt-40 pb-30">
+    <div class="container">
+     <div class="row">
+
+     </div>
+    </div>
+   </div>
+   <!-- services end -->
+   <!-- blog start -->
+   <div class="blog-area">
+    <div class="container">
+     <div class="row">
+      <div class="col-xl-8 col-lg-8">
+
+        <div class="contact-form-wrap">
+         <h3 class="contact-title">联系我们 </h3>
+         <form class="contact-form" id="review">
+          <div class="row">
+           <div class="col-lg-6">
+            <div class="form-box mb-30">
+             <input type="text" id="name" name="name" placeholder="Your Name" />
+            </div>
+           </div>
+           <div class="col-lg-6">
+            <div class="form-box mb-30">
+             <input type="text" id="mail" name="mail" placeholder="Your Email" />
+            </div>
+           </div>
+
+           <div class="col-lg-12">
+            <div class="form-box message-icon mb-30">
+             <textarea name="review" id="review" cols="30" rows="10" placeholder="Your Message"></textarea>
+            </div>
+            <div class="contact-btn">
+             <button class="btn btn-theme" type="button" onclick="myreview()" id="btnZzk">send message <i class="far fa-long-arrow-right"></i></button>
+            </div>
+           </div>
+          </div>
+         </form>
+        </div>
+
+      </div>
+      <div class="col-xl-4 col-lg-4 sidebar-wrapper">
+      {{template "home/kangg/right.html" .}}
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- blog end -->
+
+  </main>
+  <!-- main end -->
+  <!-- footer start -->
+  <footer class="footer-area">
+   {{template "home/kangg/footer.html" .}}
+  </footer>
+  <!-- footer end -->
+  <!-- Optional JavaScript -->
+  <!-- jQuery first,then Popper.js,then Bootstrap JS -->
+
+  <script src="/static/assets/js/jquery-3.4.1.min.js"></script>
+  <script src="/static/assets/js/popper.min.js"></script>
+  <script src="/static/assets/js/bootstrap.min.js"></script>
+  <!-- <script src="http://cdn.bootcss.com/slick-carousel/1.8.0/slick.min.js"></script> -->
+  <script src="/static/assets/js/slick.min.js"></script>
+  <script src="/static/assets/js/jquery.meanmenu.min.js"></script>
+  <script src="http://www.google.cn/maps/api/js?key=AIzaSyCIJ_QKHN-bi6_1C9f5eYE3pZs1zhQIo5o"></script>
+  <script src="/static/assets/js/jquery.nice-select.min.js"></script>
+  <script src="/static/assets/js/script.js"></script>
+  <script>
+    // $(function () {
+    //     $("#btnZzk").click(function () {
+    //         $.ajax({
+    //             url:'/message/save',
+    //             type:'post',
+    //             data:$("#review").serialize(),
+    //             success:function (data) {
+    //                 if (data.code == 200) {
+    //                    alert("成功发送！");
+    //                     window.location.reload();
+    //                 }
+    //                 console.log(data);
+    //             }
+    //         });
+    //     })
+    // });
+    function myreview() {
+              $.ajax({
+              //几个参数需要注意一下
+                  type: "POST",//方法类型，或者用GET
+                  url: "/message/save" ,//ip:端口/项目名称/Servlet名称
+                  data: $('#review').serialize(),//获取表单里的数据到这里
+                  success: function (result) {
+                      //console.log(result);
+                      if (result.code == 200) {
+                          alert("成功发送！");
+                          window.location.reload();
+                      }
+                  },
+                  error : function() {
+                      alert("异常！");
+                  }
+              });
+
+          }
+  </script>
+ </body>
+</html>

@@ -1,0 +1,49 @@
+﻿<link rel="stylesheet" href="/static/lib/layui/css/layui.css" />
+<link rel="stylesheet" href="/static/md/css/editormd.preview.css" />
+<link rel="stylesheet" href="/static/default/css/blog-common.min.css" />
+<link id="MainCss" rel="stylesheet" href="/static/default/css/bundle-codinglife.min.css" />
+
+{{template "home/default/header.html" .}}
+<style>
+    blockquote{
+        border:none;
+    }
+</style>
+<div id="main">
+    <div class="container main-container">
+        <div class="row">
+            {{range $key ,$vlaue := $.Data}}
+            <div class="col-md-4 col-xs-6">
+                <div style="border-radius:3px;border:1px solid #e2e2e2;padding: 10px;background-color: #fff">
+                    <h3 style="margin-top: 10px"><a href="{{$vlaue.Tag}}" target="_blank" title="{{$vlaue.Title}}">{{$vlaue.Title}}</a></h3>
+                    <p>{{$vlaue.Remark}}</p>
+                </div>
+
+            </div>
+            {{end}}
+
+        </div>
+    </div>
+</div>
+{{template "home/default/footer.html" .}}
+
+<script src="/static/md/lib/marked.min.js"></script>
+<script src="/static/md/lib/prettify.min.js"></script>
+
+<script src="/static/md/lib/raphael.min.js"></script>
+<script src="/static/md/lib/underscore.min.js"></script>
+<script src="/static/md/lib/sequence-diagram.min.js"></script>
+<script src="/static/md/lib/flowchart.min.js"></script>
+<script src="/static/md/lib/jquery.flowchart.min.js"></script>
+
+<script src="/static/md/editormd.js"></script>
+<script type="text/javascript">
+
+</script>
+<script src="/static/js/jquery-2.2.0.min.js"></script>
+<script>
+    $(function () {
+
+    })
+
+</script>

@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="origin" />
+
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>{{$.index}} 第 {{.Paginator.CurrentPage}} 页 - {{$.title}}</title>
+    <meta name="description" content="{{$.keyword}}"/>
+    <meta name="keywords" content="{{$.description}}">
+    <link rel="stylesheet" href="/static/css/blog-common.min.css" />
+    <link id="MainCss" rel="stylesheet" href="/static/css/bundle-codinglife.min.css" />
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="/static/css/bundle-codinglife-mobile.min.css" />
+    <link rel="stylesheet" href="/static/css/{{$.bgClass}}.css" />
+</head>
+<style>
+    .day{
+        margin-bottom: 20px;
+    }
+</style>
+
+<body>
+<a name="top"></a>
+<!--done-->
+<div id="home">
+    {{template "home/leechan/header.html" .}}
+    {{/*<div id="header">
+        <div id="blogTitle">
+            <a id="lnkBlogLogo" href="/"><img id="blogLogo" src="/static/images/logo.gif" alt="返回主页" /></a>
+
+            <!--done-->
+            <h1>
+                <a id="Header1_HeaderTitle" class="headermaintitle" href="/">职业第三者</a>
+            </h1>
+            <h2>
+                如今的我，谈不上幸福，也谈不上不幸。
+            </h2>
+
+        </div><!--end: blogTitle 博客的标题和副标题 -->
+        <div id="navigator">
+
+            <ul id="navList">
+                <li>
+                    <a id="blog_nav_myhome" class="menu" href="/">
+                        首页</a>
+                </li>
+                <li>
+
+                    <a id="blog_nav_newpost" class="menu" href="/list.html">
+                        随笔</a>
+                </li>
+                <li>
+                    <a id="blog_nav_contact" class="menu" href="javascript:;">
+                        留言</a></li>
+                <li>
+                    <a id="blog_nav_rss" class="menu" href="javascript:;">
+                        订阅</a>
+                </li>
+            </ul>
+        </div><!--end: navigator 博客导航栏 -->
+    </div><!--end: header 头部 -->*/}}
+
+    <div id="main">
+        <div id="mainContent">
+            <div class="forFlow">
+
+                <!--done-->
+                {{range $key ,$vlaue := $.Data}}
+                <div class="day">
+                    <div class="dayTitle diyBg">
+                        <a href="/list.html?date={{dateformat $vlaue.Created "2006-01-02"}}">{{$vlaue.Created}}</a>
+                    </div>
+                    <div class="postTitle">
+                        <a class="postTitle2" title="{{$vlaue.Title}}" href="/detail/{{$vlaue.Id}}.html">
+                            {{$vlaue.Title}}
+                        </a>
+                    </div>
+                    <div class="postCon">
+                        <div class="c_b_p_desc">
+                            摘要：{{$vlaue.Remark}}
+                            <a title="{{$vlaue.Title}}" href="/detail/{{$vlaue.Id}}.html" class="c_b_p_desc_readmore">阅读全文</a>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="postDesc">
+                        {{dateformat $vlaue.Created "2006-01-02 15:04:05"}} {{$vlaue.User.Name}} 阅读 ({{$vlaue.Pv}}) 评论 ({{$vlaue.Review}}) 点赞 ({{$vlaue.Like}})
+                        <span style="margin-left: 5px">标签：</span><a href="javascript:;">{{$vlaue.Tag}}</a>
+                        <span style="margin-left: 5px">分类：</span><a href="javascript:;">{{$vlaue.Category.Name}}</a>
+                        {{if eq $vlaue.Recommend 1}}
+                        <span style="margin-left: 5px"><a href="javascript:;" style="color: #FF5722">顶置</a></span>
+                        {{end}}
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                {{end}}
+
+
+                <div class="topicListFooter">
+                    <div id="nav_next_page">
+                        {{if gt .Paginator.CurrentPage 1}}
+                            <a class="prev" href="{{urlfor "home.ArticleController.List"}}?page={{IndexDecrOne $.Paginator.CurrentPage}}{{if $.Date}}&date={{$.Date}}{{end}}{{if $.CategoryID}}&c={{$.CategoryID}}{{end}}">上一页</a>
+                        {{end}}
+                        {{if lt .Paginator.CurrentPage .Paginator.TotalPage}}
+                            <a class="next" href="{{urlfor "home.ArticleController.List"}}?page={{IndexAddOne $.Paginator.CurrentPage}}{{if $.Date}}&date={{$.Date}}{{end}}{{if $.CategoryID}}&c={{$.CategoryID}}{{end}}">下一页</a>
+                        {{end}}
+                        {{if gt .Paginator.TotalPage 0}}
+                            <span class="current">第 {{.Paginator.CurrentPage}} 页 </span>
+                            <span class="num">总 {{.Paginator.TotalPage}} 页</span>
+                        {{end}}
+                    </div>
+                </div>
+
+            </div><!--end: forFlow -->
+
+        </div><!--end: mainContent 主体内容容器-->
+
+        <div id="sideBar">
+            {{template "home/leechan/right.html" .}}
+            {{/*<div id="sideBarMain">
+                <div id="sidebar_news" class="newsItem"><!--done-->
+                    <h3 class="catListTitle">关于我</h3>
+                    <div id="blog-news">
+                        <div id="profile_block">
+                            昵称：
+                            <a title="职业第三者" href="javascript:;">
+                                职业第三者
+                            </a>
+                            <br>
+                            简介：
+                            <a href="javascript:;" title="纯码农，擅长PHP，GO等语言">
+                                纯码农，擅长PHP，GO等语言
+                            </a>
+                            <br>
+                            <div style="text-align: center;margin-top: 20px">
+                                <a href="javascript:;">
+                                    <img width="80%" src="/static/images/weixin.jpg">
+                                </a>
+                            </div>
+                            <br>
+                            <div id="p_b_follow"></div>
+                       </div>
+                    </div>
+
+                </div>
+                <div id="sidebar_categories">
+
+                    <div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+                        <h3 class="catListTitle">随笔档案</h3>
+                        <ul>
+                            {{range $k,$v := $.DateTime}}
+                            <li>
+                                <a title="{{StringReplace $k "-" "年"}}月" href="/list.html?date={{$k}}" rel="">
+                                    {{StringReplace $k "-" "年"}}月({{$v}})
+                                </a>
+                            </li>
+                            {{end}}
+                        </ul>
+
+
+                    </div>
+
+                </div>
+                <div id="sidebar_topviewedposts" class="sidebar-block">
+                    <div class="catListView">
+                        <h3 class="catListTitle">阅读排行榜</h3>
+                        <div id="TopViewPostsBlock">
+                            <ul style="word-break:break-all">
+                                {{range $k,$v := $.ArticlesReadSort}}
+                                <li>
+                                    <a title="{{$v.Title}}" href="/detail/{{$v.Id}}.html">
+                                        {{IndexForOne $k 1 1}}. {{$v.Title}}({{$v.Pv}})
+                                    </a>
+                                </li>
+                                {{end}}
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>*/}}
+            <!--end: sideBarMain -->
+        </div><!--end: sideBar 侧边栏容器 -->
+        <div class="clear"></div>
+    </div><!--end: main -->
+
+    {{template "home/leechan/footer.html" .}}
+    <!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+</body>
+</html>
