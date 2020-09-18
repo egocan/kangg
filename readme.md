@@ -21,7 +21,7 @@
 
 ### Install 
 
-1. 把Go Blog项目拉到本地
+1. 把[kangg](https://github.com/egocan/kangg)项目拉到本地
 
 ```
 https://github.com/egocan/kangg.git
