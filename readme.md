@@ -1,4 +1,4 @@
-## kangg 看过够CMS
+## kangg 看过够CMS 
 本项目在[go-blog](https://github.com/1920853199/go-blog/)的基础上完善，后端基于[beego](https://github.com/astaxie/beego/)，后台前端：使用[X-admin](http://x.xuebingsi.com/)、[layui](https://github.com/sentsin/layui/)、MD编辑器使用[Editor.md](https://github.com/pandao/editor.md)；主页前端使用：bootstrap、jquery、[slick](https://github.com/kenwheeler/slick)等组件完成。[https://kanguogou.com](https://kanguogou.com)
 
 ### 主要功能
@@ -43,7 +43,7 @@ url = 127.0.0.1:8088
 view = kangg		//主页模板
 
 limit = 10
-title = kanguogou
+title = kanguogou   //首页头部标题
 autograph = 如今的我，谈不上幸福，也谈不上不幸。
 rootStaticExt = .txt,.html,.xml  //static根目录下允许直接被访问的文件后缀，方便robots、sitemap使用
 

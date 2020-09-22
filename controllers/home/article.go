@@ -140,16 +140,39 @@ func (c *ArticleController) List() {
 	// Menu
 	c.Log("article")
 
-	if categoryId == 0 {
-		c.Data["index"] = "我的心理学过程记录"
-	}else{
+	//if categoryId == 0 {
+	//	c.Data["index"] = "我的心理学过程记录"
+	//}else{
+	//	categoryKey := admin.Category{Id:categoryId}
+	//	err = o.Read(&categoryKey)
+	//	if err == nil {
+	//		c.Data["index"] = categoryKey.Name
+	//	}else{
+	//		c.Data["index"] = "我的心理学过程记录"
+	//	}
+	//}
+	switch{
+	case tag != "":
+		c.Data["index"] = tag
+	case cate != "":
+		categoryKey := admin.Category{Ename:cate}
+		err = o.Read(&categoryKey,"Ename")
+		if err == nil {
+			c.Data["index"] = categoryKey.Name
+		}else{
+			c.Data["index"] = beego.AppConfig.String("title")
+		}
+	case categoryId !=0:
 		categoryKey := admin.Category{Id:categoryId}
 		err = o.Read(&categoryKey)
 		if err == nil {
 			c.Data["index"] = categoryKey.Name
 		}else{
-			c.Data["index"] = "我的心理学过程记录"
+			c.Data["index"] = beego.AppConfig.String("title")
 		}
+	default:
+		c.Data["index"] = beego.AppConfig.String("title")
+
 	}
 
 	c.TplName = "home/" + beego.AppConfig.String("view") + "/list.html"
